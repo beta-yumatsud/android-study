@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.darmaso.sample.android.qiitaclient"
-        minSdkVersion 27
+        minSdkVersion 25
         targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
@@ -57,7 +57,7 @@ dependencies {
     implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxlifecycleVersion"
     implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycleVersion"
 
-    def daggerVersion = '2.4'
+    def daggerVersion = '2.17'
     implementation "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
@@ -68,4 +68,10 @@ dependencies {
     kapt "com.google.guava:guava:22.0"
 
     implementation "org.jetbrains.anko:anko-sdk25:0.10.5"
+
+    implementation 'com.google.firebase:firebase-core:16.0.3'
+    implementation 'com.google.firebase:firebase-messaging:17.3.1'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,24 @@
+@startuml
+actor User
+participant "TaskDetailActivity" as TDA
+participant "TaskDetailFragment" as TDF
+participant "TaskDetailPresenter" as TDP
+participant "TasksRepository" as TR
+
+User ->> TDA: show task detail
+activate TDA
+TDA ->> TDF: create instance and attach to activity
+activate TDF
+TDA ->> TDP: init presenter with TaskDetailFragment, TasksRepository
+activate TDP
+TDF ->> TDP: onResume(), call presenter.onStart()
+TDP -> TDP: openTask()
+TDP ->> TR: getTask()
+TR -> TR: Get data at cache or newwork or database.
+TDP <<-- TR: callback.onTaskLoaded()
+TDF <<-- TDP: call implments View method(showTitle, showDescription) by fragment
+TDF -> TDF: reflect view
+TDA <<-- TDF
+User <<-- TDA
+
+@enduml
