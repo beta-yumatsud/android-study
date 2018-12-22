@@ -1,0 +1,24 @@
+@startuml
+actor User
+participant "TaskDetailActivity" as TDA
+participant "TaskDetailFragment" as TDF
+participant "TaskDetailViewModel" as TDVM
+participant "TasksRepository" as TR
+
+User ->> TDA: show task detail
+activate TDA
+TDA ->> TDF: create instance and attach to activity
+activate TDF
+TDA ->> TDVM: init ViewModel, observe ViewModel command (editTaskCommand, deleteTaskCommand)
+activate TDVM
+TDF -> TDF: onCreateView(), bind TaskdetailFragBinding and set viewmodel, listener at layout. 
+TDF ->> TDVM: onResume(), call TaskDetailViewModel.start()
+TDVM ->> TR: getTask()
+TR -> TR: Get data at cache or newwork or database.
+TDVM <<-- TR: callback.onTaskLoaded()
+TDVM <<-- TDVM: setTask(), update ObservableField.
+TDF <<-- TDVM
+TDA <<-- TDF
+User <<-- TDA
+
+@enduml
