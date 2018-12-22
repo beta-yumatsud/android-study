@@ -1,0 +1,34 @@
+@startuml
+actor User
+participant "MainActivity" as MA
+participant "SearchResultFragment" as SRF
+participant "UserSearchStore" as USS
+participant "UserSearchAction" as USA
+participant "GitHubApi" as GHA
+participant "Dispatcher" as DP
+
+User ->> MA: search user list 
+activate MA
+MA ->> SRF: create fragment and attach to activity
+activate SRF
+SRF -> SRF: ineject UserSearchAction, UserSearchStore.
+SRF -> SRF: onViewCreated(), databinding, observe UserSearchStore.
+SRF -> USS: addOnLoadingStateChanged, addOnListChanged
+activate USS
+USS -> USS: Subsctibe on(<<Event Class>>). Correctly, when injection.
+SRF <- USS
+SRF ->> USA: findFollower(). Correctly, call findFollow() by SearchInputFragment 
+activate USA
+USA ->> GHA: call gitHubApi.followers(), subscribe callback lambda function.
+activate GHA
+GHA -> GHA: Get Data.
+USA <<-- GHA
+USA ->> DP: dispatch with Event class.
+activate DP
+DP -> DP: post Event class using EventBus.
+USS <<-- DP: on(<<Event Class>>). Update ObservableField, called addOnLoadingStateChanged, addOnListChanged.
+SRF <<-- USS: call addOnLoadingStateChanged, addOnListChanged. update databinding.
+MA <<-- SRF
+User <<-- MA
+
+@enduml
