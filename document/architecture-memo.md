@@ -11,6 +11,7 @@ Androidのアーキテクト選定時に、色々なドキュメントを読ん�
 ### Clean Architecture
 * [The Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
 * [android10/Android-CleanArchitecture](https://github.com/android10/Android-CleanArchitecture)
+* [android10/Android-CleanArchitecture-Kotlin](https://github.com/android10/Android-CleanArchitecture-Kotlin)
 * [AndroidオールスターズでClean Architectureについて発表してきた&参考リンク集](http://tomoima525.hatenablog.com/entry/2015/08/13/190731)
   * [Android Clean Architecture ことはじめ](https://www.slideshare.net/tomoakiimai2/android-cleanarchitecture)
   * [tomoima525/CleanArchitectureSample](https://github.com/tomoima525/CleanArchitectureSample)
