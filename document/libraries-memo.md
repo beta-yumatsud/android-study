@@ -66,3 +66,51 @@
   * 三項演算子なども利用可能
   * null合体演算子と言われる、 `@{data.name ?? @string/no_name}` のようにnullだったらデフォルト値とかも指定できる
   * `BindingAdapterアノテーション` はレイアウトに対してsetterを宣言できる
+
+## Reactive系
+* 参考
+  * [Android/KotlinでRxAndroidを使うときに参考にしたサイト](https://wannabe-jellyfish.hatenablog.com/entry/2017/01/29/120537)
+  * [RxAndroidをカジュアルに使ってみるとか](http://kirimin.hatenablog.com/entry/2015/02/11/221228)
+  * [RxJava+RetrofitでAPI通信周りを実装するうえで最低限の知識を30分で詰め込む](https://qiita.com/FumihikoSHIROYAMA/items/201536d9b45ef21b6bc7)
+  * [ReactiveX/RxKotlin](https://github.com/ReactiveX/RxKotlin)
+* まず簡単に言うと...
+  * 短い関数をチェーンしていき、ストリーム的にイベント結果のデータを加工する処理を定義できる
+  * かつ、遅延実行・非同期コールバックを行う事が出来るのが大きなメリット(だと思ってる)
+* 要素
+  * Observable
+    * 処理を実行して結果を伝えるオブジェクト(データソースを提供するもの)
+  * Observer
+    * 結果を受け取った時の処理を決める
+  * `Observable` が `Observer` を `subscribe` する形で、 `Observable` の処理結果を `Observer` でどうするか決めてあげる的なね
+* 流れ (APIを実行して結果を返す的なものを例にあげる)
+  * APIの実行結果のレスポンス型をObservableとして定義
+  * APIを実行し、Observableを受け取り、必要な処理をチェーンで結ぶ
+  * 上記の最後で、subscribeをおき、その中では受け取った結果をどうするかの処理を書いておく
+＊ チェーン要素
+  * subscribeOn
+    * 処理をどのスレッドでやるか定義
+    * 非同期処理だと、 `Schedulers.io()` などで別スレで実行できる
+  * observeOn
+    * コールバックをどのスレッドでやるか
+    * デフォルトはmainThread？
+  * subscribe
+    * 実行した結果、何をするか定義するところ
+    * Observableの型によって、 `onSuccess` `onError` `onCompleted` `onError` `onNext` などが呼ばれる
+  * `map`、`filter`、`merge`などを使うと結果の処理をいい感じに加工できるので、必要に応じて使う
+* [Observableの種類](http://reactivex.io/documentation/operators.html)
+  * Single
+    * `onSuccess` か `onError` のどちらかが1回だけ呼ばれる
+    * HTTP GETのように成功してレスポンスを1度だけ受け取るか、または失敗するようなものに向いている
+  * Completable
+    * `onComplete` か `onError` のどちらかが1回だけ呼ばれる
+    * レスポンスが空のHTTP POSTなどに向いている
+  * Zip
+    * 複数のObservableの完了を待ち合わせ、それを処理する関数に渡して変換するためのオペレータ
+    * 複数のAPIを叩いて待ち合わせる時に利用
+* 購読解除
+  * Disposable
+    * subscribeメソッドは返り値として `Disposable` を返す
+    * `Disposable#dispose()` を呼ぶと以後のイベントは通知されて来なくなる
+  * CompositeDisposable
+    * 複数のDisposableをまとめて購読を解除するための `CompositeDisposable` も提供されている
+
