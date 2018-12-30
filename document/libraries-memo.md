@@ -114,3 +114,19 @@
   * CompositeDisposable
     * 複数のDisposableをまとめて購読を解除するための `CompositeDisposable` も提供されている
 
+## ViewModel
+* 参考
+  * [公式](https://developer.android.com/topic/libraries/architecture/viewmodel)
+* メモ
+  * 一番は `Activity` や `Fragment` のライフサイクルに合わせてデータの生成や排除ができること
+  * コルーチンと組み合わせて使うと協力かも
+  * `LiveData` との組み合わせは必須感
+
+## LiveData
+* 参考
+  * [公式](https://developer.android.com/topic/libraries/architecture/livedata)
+  * [Kotlin の拡張関数で LiveData の observe をいい感じにする](https://qiita.com/yuichi_araki/items/f9b0778f927bccdf08ca)
+  * [araki/LiveDataWithTimeout.kt](https://gist.github.com/yaraki/4cbeb3be276117c07d22602ab1382b04)
+* メモ
+  * 基本的には `ViewModel` とともに利用すると良さげ
+  * LiveDataをObserveしておくと、LiveDataが更新された時にUIのUpdateなどができる
