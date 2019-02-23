@@ -18,6 +18,9 @@ Androidのアーキテクト選定時に、色々なドキュメントを読ん�
 
 ### MVVM
 * [android10/Android-CleanArchitecture-Kotlin](https://github.com/android10/Android-CleanArchitecture-Kotlin)
+* [googlesamples/android-architecture](https://github.com/googlesamples/android-architecture/tree/todo-mvvm-live-kotlin)
+* [Consuming REST API using Retrofit Library with the help of MVVM, Dagger 2, LiveData and RxJava 2 in Android](https://medium.com/@saquib3705/consuming-rest-api-using-retrofit-library-with-the-help-of-mvvm-dagger-livedata-and-rxjava2-in-67aebefe031d)
+* [Kotlin + Architecture Component + Dagger2によるAndroidアプリ設計](https://qiita.com/satorufujiwara/items/0f95ccfc3820d3ee1370)
 
 ### Flux
 * [RxJava + Flux (+ Kotlin)によるAndroidアプリ設計](https://qiita.com/satorufujiwara/items/cbf304891daec87ba5b7)
