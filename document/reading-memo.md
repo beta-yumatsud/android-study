@@ -15,3 +15,6 @@
   * [設定](https://developer.android.com/training/testing/set-up-project?hl=ja)
   * [ユニットテスト](https://developer.android.com/training/testing/unit-testing?hl=ja)
   * [espresso](https://developer.android.com/training/testing/espresso?hl=ja)
+* App Bundle & Dynamic Delivery
+  * [About Android App Bundles](https://developer.android.com/guide/app-bundle?hl=ja)
+  * [About Dynamic Delivery](https://developer.android.com/studio/projects/dynamic-delivery?hl=ja)
